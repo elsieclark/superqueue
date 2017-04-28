@@ -1,0 +1,27 @@
+{
+  "name": "superqueue",
+  "version": "0.0.1",
+  "description": "Variably concurrent Promise queue",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willdavidc/superqueue.git"
+  },
+  "keywords": [
+    "queue",
+    "promise",
+    "concurrency"
+  ],
+  "author": "Will Clark",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/willdavidc/superqueue/issues"
+  },
+  "homepage": "https://github.com/willdavidc/superqueue#readme",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}
