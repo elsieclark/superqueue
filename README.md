@@ -70,7 +70,7 @@ That's it. Everything else works the same.
 
 ### Advanced Queue Configuration: Interval and Rate ###
 
-A SuperQueue can also optionally be configured with an interval and a rate, which can be useful if you're hitting a rate limited API. There is a subtle difference between the two.
+A SuperQueue can also optionally be configured with an interval and/or a rate, which can be useful if you're hitting a rate limited API. There is a subtle difference between the two.
 
 * The interval is the amount of time (in ms) that must pass between queued items being executed.
 * The rate is the number of requests which can be made in any given second.
@@ -97,7 +97,7 @@ const queueConfig = {
 const myQueue = new SuperQueue(queueConfig);
 ```
 
-It is possible to set both a rate and an interval for a single queue, if you want, but there aren't many situations where that would be useful.
+It is possible to set both a rate and an interval for a single queue, if you want.
 
 ### Advanced Queue Item Configuration: Priority ###
 
@@ -211,10 +211,16 @@ Methods
 });
 
 .pause();
-// Stops executing queued functions
+// Stops executing queued items. Returns false if already paused, true otherwise.
+
+.pause(flag);
+// Stops executing queued items with flag. If any flag on an item is paused, the item will never execute. Returns false if already paused, true otherwise.
 
 .unpause();
-// Resumes queue execution
+// Resumes queue execution. Returns false if already unpaused, true otherwise.
+
+.unpause(flag);
+// Resumes queue execution for flag. Returns false if already unpaused, true otherwise.
 
 .getLength();
 // Returns number of queued (non-executing) items
