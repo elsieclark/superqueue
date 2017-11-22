@@ -200,6 +200,7 @@ Methods
 .push({
 	priority,            // ?Number<10>
 	flags,               // ?[String]
+	name,                // ?String
 }, function, [...args]);
 
 .addFlag({
@@ -237,7 +238,7 @@ Methods
 .on('start', (queueLength) => {} );
 // Whenever a function starts executing
 
-.on('complete', (queueLength) => {} );
+.on('complete', (queueLength, { executionTime, flags, error, result }) => {} );
 // Whenever a function completes
 
 .on('empty', () => {} );
