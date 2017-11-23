@@ -20,7 +20,7 @@ const SuperQueue = require('superqueue');
 
 ### Simple Single Concurrency Queue ###
 
-To create a simple promise queue with a concurrency of one (i.e. only one function is executing at a time):
+To create a simple promise queue with a `concurrency` of one (i.e. only one function is executing at a time):
 
 ```js
 const SuperQueue = require('superqueue');
@@ -58,7 +58,7 @@ myQueue.push(basicThennableFunction, 'Three');
 
 ### Simple Adjustable Concurrency Queue ###
 
-A SuperQueue's concurrency may be adjusted to specify how many functions may be executing at once. To create a SuperQueue with a concurrency of 5:
+A SuperQueue's `concurrency` may be adjusted to specify how many functions can execute at once. To create a SuperQueue with a `concurrency` of 5:
 
 ```js
 const SuperQueue = require('superqueue');
@@ -69,12 +69,12 @@ A concurrency of 0 means unlimited.
 
 ### Advanced Queue Configuration: Interval and Rate ###
 
-A SuperQueue can also optionally be configured with an interval and/or a rate, useful for a rate limited API. There is a subtle difference between the two:
+A SuperQueue can also optionally be configured with an `interval` and/or a `rate`, useful for rate-limited APIs. There is a subtle difference between the two:
 
-* The interval is the amount of time (in ms) that must pass between queued items being executed.
-* The rate is the number of requests which can be made over any given interval.
+* The `interval` is the amount of time (in ms) that must pass between queued items being executed.
+* The `rate` is the number of requests which can be made over a given period of time (the `rateDenominator`).
 
-For example, a queue with an interval of 200 will execute one request every 200ms, whereas a queue with a rate of 5 (and a rateDenominator of 1000) will execute 5 requests immediately, wait 1s, and then execute the next 5.
+For example, a queue with an `interval` of 200 will execute one request every 200ms, whereas a queue with a `rate` of 5 (and a `rateDenominator` of 1000) will execute 5 requests immediately, wait 1s, and then execute the next 5.
 
 ```js
 const queueConfig = {
@@ -94,11 +94,11 @@ const queueConfig = {
 const myQueue = new SuperQueue(queueConfig);
 ```
 
-It is possible to set both a rate and an interval for a single Queue.
+It is possible to set both a `rate` and an `interval` for a single Queue.
 
 ### Advanced Queue Item Configuration: Priority and Name ###
 
-Each item added to the queue may be accompanied by options, including `priority` (larger numbers = higher priority, default = 10) and `name` (returned by EventEmitter when item begins or finishes execution).
+Each item added to the queue may be accompanied by options, including `name` (returned by EventEmitter when item begins or finishes execution) and `priority` (larger numbers = higher priority, default = 10).
 
 ```js
 
@@ -131,9 +131,9 @@ myQueue.push(priorityConfig, highPriorityFunc, 'three');
 
 ### Advanced Queue Configuration: Flags ###
 
-By creating a `flag`, and by assigning specific queue items to that flag, restrictions on execution (concurrency, interval, rate, rateDenominator) can be applied to a subset of items in the queue.
+By creating a `flag`, and by assigning specific queue items to that `flag`, restrictions on execution (`concurrency`, `interval`, `rate`, `rateDenominator`) can be applied to a subset of items in the Queue.
 
-E.g using an API which has both public and private calls. The API is rate limited to 5 requests per second. Public requests are simple, but the private requests require a nonce value which must always be increasing.
+E.g using an API which has both public and private calls. The API is rate-limited to 5 requests per second. Public requests are simple, but the private requests require a nonce value which must always be increasing.
 
 To implement this, simply set up a 'private' flag:
 
