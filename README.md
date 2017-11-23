@@ -182,7 +182,6 @@ myQueue.push(publicFunc, param1)
     .catch((err) => {
         // Handle error
     });
-    
 ```
 
 Methods
@@ -193,7 +192,7 @@ Methods
 .push({
 	priority,            // ?Number<10>
 	flags,               // ?[String]
-	name,                // ?String
+	name,                // ?String<''>
 }, func, [...args]);
 
 .addFlag({
