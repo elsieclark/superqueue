@@ -94,7 +94,7 @@ const queueConfig = {
 const myQueue = new SuperQueue(queueConfig);
 ```
 
-It is possible to set both a `rate` and an `interval` for a single Queue.
+It is possible to set both a `rate` and an `interval` on the same Queue.
 
 ### Advanced Queue Item Configuration: Priority and Name ###
 
