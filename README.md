@@ -238,7 +238,7 @@ Methods
 .on('start', (queueLength) => {} );
 // Whenever a function starts executing
 
-.on('complete', (queueLength, { executionTime, flags, error, result }) => {} );
+.on('complete', ({ name, duration, flags, error, result }) => {} );
 // Whenever a function completes
 
 .on('empty', () => {} );
