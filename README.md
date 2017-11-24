@@ -72,7 +72,7 @@ A concurrency of 0 means unlimited.
 A SuperQueue can also optionally be configured with an `interval` and/or a `rate`, useful for rate-limited APIs. There is a subtle difference between the two:
 
 * The `interval` is the amount of time (in ms) that must pass between queued items being executed.
-* The `rate` is the number of requests which can be made over a given period of time (the `rateDenominator`).
+* The `rate` is the number of requests which can be made over a given period of time (the `rateDenominator`). The `rate` must be an integer.
 
 For example, a queue with an `interval` of 200 will execute one request every 200ms, whereas a queue with a `rate` of 5 (and a `rateDenominator` of 1000) will execute 5 requests immediately, wait 1s, and then execute the next 5.
 
