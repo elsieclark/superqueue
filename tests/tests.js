@@ -10,6 +10,7 @@ let queueItems = QueueItem(queue, 4);
 
 Promise.resolve()
     .then(() => {
+        console.log('Omega 1', Date.now())
         console.log(queue.getLength());
         queueItems[0].push();
         console.log(queue.getLength());
@@ -38,5 +39,10 @@ Promise.resolve()
         console.log(queue.getLength())
         console.log(queueItems[1].isExecuting())
         console.log(queueItems[2].isExecuting())
+        console.log('Omega 2', Date.now())
+        setTimeout(() => {
+            console.log('Resolving 1')
+            queueItems[1].resolve();
+        }, 2000);
     })
 
