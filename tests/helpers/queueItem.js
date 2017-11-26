@@ -26,9 +26,9 @@ const State = function() {
 };
 
 const QueueItem = function(queue) {
+    const state = new State();
     let resolve;
     let reject;
-    let state = new State();
     let resolved = false;
     let rejected = false;
 
