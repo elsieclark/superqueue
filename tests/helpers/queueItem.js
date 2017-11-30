@@ -50,7 +50,7 @@ const QueueItem = function(queue) {
         if (!this.isExecuting()) {
             return false;
         }
-        if (!resolve) {
+        if (typeof resolve !== 'function') {
             return false;
         }
         resolve();
@@ -60,10 +60,10 @@ const QueueItem = function(queue) {
     };
 
     this.reject = () => {
-        if (!isExecuting) {
+        if (!this.isExecuting()) {
             return false;
         }
-        if (!reject) {
+        if (typeof reject !== 'function') {
             return false;
         }
         reject();
@@ -82,7 +82,7 @@ const QueueItem = function(queue) {
                 reject = rej;
             });
         }];
-        if (!_.isUndefined(options)) {
+        if (options !== undefined) {
             params.unshift(options);
         }
         queue.push(...params)
@@ -117,7 +117,7 @@ const QueueItem = function(queue) {
                 res();
                 clearTimeout(timer);
             });
-            if (!_.isFinite(timeout) || timeout <= 0) {
+            if (!Number.isFinite(timeout) || timeout <= 0) {
                 return;
             }
             timer = setTimeout(() => {
@@ -127,12 +127,36 @@ const QueueItem = function(queue) {
     };
 };
 
+const applyCommand = (command) => {
+    return (index, ...args) => {
+        if (Array.isArray(index)) {
+            index.forEach((i) => this[i][command](...args));
+            return;
+        }
+        this[i][command](...args);
+    };
+};
+
+const applyCommandToAll = (command) => {
+    return (...args) => {
+        this.forEach((o) => {o[command](...args)})
+    }
+}
+
 module.exports = function(queue, count) {
-    if (_.isFinite(count)) {
+    if (Number.isFinite(count)) {
         const arr = [];
         for (let i = 0; i < count; i++) {
             arr.push(new QueueItem(queue));
         }
+        _.defaults(arr, {
+            push: applyCommand('push'),
+            resolve: applyCommand('resolve'),
+            reject: applyCommand('reject'),
+            pushAll: applyCommandToAll('push'),
+            resolveAll: applyCommandToAll('resolve'),
+            rejectAll: applyCommandToAll('reject'),
+        });
         return arr;
     }
     return new QueueItem(queue);
