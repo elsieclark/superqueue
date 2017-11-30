@@ -236,32 +236,3 @@ Methods
 .on('empty', () => {} );
 // Whenever the queue becomes empty
 ```
-
-/* Queue Object
- *
- * {
- *     name,
- *     priority,
- *     flags: [defaultFlag, "flag1", "flag2"],
- *     func: thennable,
- *     resolve,
- *     reject,
- *     params,
- * }
- *
- */
-
-/* Flag Object
- *
- * {
-        concurrency: 1,
-        interval: 0,
-        rate: 0,
-        rateDenominator: 1000,
-        concurrent: 0,
-        length: 0,
-        paused: false,
-        recent: [],
-    }
- *
- */
