@@ -22,6 +22,5 @@
   },
   "homepage": "https://github.com/willdavidc/superqueue#readme",
   "dependencies": {
-    "lodash": "^4.17.4"
   }
 }
