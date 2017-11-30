@@ -115,7 +115,8 @@ function highPriorityFunc(param1) {
 }
 
 const priorityConfig = {
-    priority: 11 // Default priority is 10, higher numbers happen sooner
+    // Default priority is 10, higher numbers happen sooner
+    priority: 11,
 };
 
 myQueue.push(lowPriorityFunc, 'one');
@@ -123,8 +124,8 @@ myQueue.push(lowPriorityFunc, 'two');
 myQueue.push(priorityConfig, highPriorityFunc, 'three');
 
 /* 
- * Order will be: 'one', 'three', 'two', so long as the first function
- * didn't resolve before the third one was added.
+ * Order will be: 'one', 'three', 'two', so long as the first
+ * function didn't resolve before the third one was added.
  */
 
 ```
@@ -143,7 +144,7 @@ const SuperQueue = require('superqueue');
 
 const queueConfig = {
     concurrency: 0, // Unlimited concurrency
-    rate: 5
+    rate: 5,
 };
 const myQueue = new SuperQueue(queueConfig);
 
@@ -204,16 +205,21 @@ Methods
 });
 
 .pause();
-// Stops executing queued items. Returns false if already paused, true otherwise.
+// Stops executing queued items. Returns false if already paused,
+// true otherwise.
 
 .pause(flag);
-// Stops executing queued items with flag. If any flag on an item is paused, the item will never execute. Returns false if already paused, true otherwise.
+// Stops executing queued items with flag. If any flag on an item
+// is paused, the item will never execute. Returns false if already
+// paused, true otherwise.
 
 .unpause();
-// Resumes queue execution. Returns false if already unpaused, true otherwise.
+// Resumes queue execution. Returns false if already unpaused,
+// true otherwise.
 
 .unpause(flag);
-// Resumes queue execution for flag. Returns false if already unpaused, true otherwise.
+// Resumes queue execution for flag. Returns false if already
+// unpaused, true otherwise.
 
 .getLength();
 // Returns number of queued (non-executing) items
@@ -225,7 +231,8 @@ Methods
 // Returns number of items currently executing
 
 .getConcurrent(flag);
-// Returns number of items categorized under flag currently executing
+// Returns number of items categorized under flag currently 
+// executing
 
 .on('start', ({ name, flags }) => {} );
 // Whenever a function starts executing

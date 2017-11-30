@@ -1,6 +1,6 @@
 {
   "name": "superqueue",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Variably concurrent Promise queue",
   "main": "lib/index.js",
   "scripts": {
