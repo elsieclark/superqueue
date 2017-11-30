@@ -10,6 +10,7 @@ let queueItems = QueueItem(queue, 4);
 
 Promise.resolve()
     .then(() => {
+        queueItems.forEach(o => o.push());
         console.log(queue.getLength());
         queueItems[0].push();
         console.log(queue.getLength());
