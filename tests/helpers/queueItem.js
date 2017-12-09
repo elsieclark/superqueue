@@ -128,7 +128,7 @@ const QueueItem = function(queue) {
 };
 
 const applyCommand = (command) => {
-    return (index, ...args) => {
+    return function(index, ...args) {
         if (Array.isArray(index)) {
             index.forEach((i) => this[i][command](...args));
             return;
@@ -138,10 +138,10 @@ const applyCommand = (command) => {
 };
 
 const applyCommandToAll = (command) => {
-    return (...args) => {
+    return function(...args) {
         this.forEach((o) => {o[command](...args)})
     }
-}
+};
 
 module.exports = function(queue, count) {
     if (Number.isFinite(count)) {
