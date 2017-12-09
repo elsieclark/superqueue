@@ -21,6 +21,8 @@
     "url": "https://github.com/willdavidc/superqueue/issues"
   },
   "homepage": "https://github.com/willdavidc/superqueue#readme",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "lodash": "^4.17.4"
   }
 }
